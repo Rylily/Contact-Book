@@ -1,0 +1,52 @@
+def add(mydict):
+  name=input("Enter name: ")
+  contact=input("Enter contact: ")
+  mydict.update({name:contact})
+      
+def delete(mydict):
+  deletename=input("Enter name: ")
+  if deletename in mydict:
+    mydict.pop(deletename)
+    print("Contact deleted")
+  else:
+    print("Contact not found")
+
+def search(mydict):
+  found=False
+  search=input("Enter search: ")
+  search=search.lower()
+  keylist = list(mydict.keys())
+  for i in range(len(keylist)):
+    if search in keylist[i].lower():
+      print(keylist[i],":",mydict[keylist[i]])
+      found=True
+  for i in range(len(keylist)):
+    if type(mydict[keylist[i]])==str:
+      mydict[keylist[i]]=mydict[keylist[i]].lower()
+    if search in mydict[keylist[i]].lower():
+      print(keylist[i],":",mydict[keylist[i]])
+      found=True
+  if found==False:
+    print("Contact not found")
+  
+    
+
+def showall(mydict):
+  keylist = list(mydict.keys())
+  for i in range(len(keylist)):
+	  print(keylist[i],":",mydict[keylist[i]])
+
+mydict={}
+
+while True:
+  print("[1] Add [2] Delete [3] Search [4] Show all")
+  selected=input("Enter selection: ")
+  if selected=="1":
+    add(mydict)
+  elif selected=="2":
+    delete(mydict)
+  elif selected=="3":
+    search(mydict)
+  elif selected=="4":
+    showall(mydict)
+  print()
